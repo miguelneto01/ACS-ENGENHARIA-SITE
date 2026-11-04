@@ -3,22 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="ACS Engenharia e Serviços: construção, reformas, energia solar, projetos e obras públicas em 17 cidades do Ceará. Vai construir ou reformar? Vem com a ACS.">
+<meta name="description" content="ACS Engenharia e Serviços: empresa habilitada para licitações e obras públicas, com 17 prefeituras atendidas, além de construção, reformas, energia solar e projetos no Ceará.">
 <meta name="theme-color" content="#0B2540">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="ACS Engenharia e Serviços">
-<meta property="og:description" content="Obras e serviços de engenharia em 17 cidades do Ceará. A solução para sua obra.">
+<meta property="og:description" content="Obras públicas e privadas em 17 prefeituras do Ceará. A solução para sua obra.">
 <meta property="og:image" content="media/og-acs.jpg">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"GeneralContractor","name":"ACS Engenharia e Serviços LTDA","slogan":"A solução para sua obra","telephone":"+55 85 9708-5814","areaServed":"Ceará, Brasil","sameAs":["https://www.instagram.com/acsengenharia.br/"]}</script>
-</head>
-<body>
 <title>ACS Engenharia e Serviços</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&amp;display=swap">
 <style>
 /* Layout: site institucional com rotas por hash (#inicio, #servicos, #obras, #atuacao, #sobre, #contato, #guia).
    Base clara com faixas em Azul Noite; Azul ACS como cor de ação. Grade de 8 px. Identidade única (não troca com tema do sistema). */
@@ -232,11 +229,14 @@ svg .a, symbol .a { fill: var(--ia, #00B8E6); }
 .chip::after { content: ""; position: absolute; inset: -2px 0; }
 .chip[aria-pressed="true"] { background: var(--noite); color: #fff; border-color: var(--noite); }
 .chip:hover { border-color: var(--noite); }
-.lb { position: fixed; inset: 0; z-index: 80; background: rgba(6,18,32,.94); display: grid; grid-template-rows: auto 1fr auto; padding: calc(12px + env(safe-area-inset-top, 0px)) var(--gut-r) calc(16px + env(safe-area-inset-bottom, 0px)) var(--gut); color: #fff; touch-action: pan-y; }
+.lb { position: fixed; inset: 0; z-index: 80; background: rgba(6,18,32,.97); display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: 12px; padding: calc(12px + env(safe-area-inset-top, 0px)) var(--gut-r) calc(16px + env(safe-area-inset-bottom, 0px)) var(--gut); color: #fff; touch-action: pan-y; overscroll-behavior: contain; }
 .lb[hidden] { display: none !important; }
 .lb-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 56px; }
-.lb-fig { display: grid; place-items: center; min-height: 0; overflow: hidden; }
-.lb-fig img { max-height: 100%; max-width: 100%; object-fit: contain; border-radius: 12px; transition: transform .3s, opacity .3s; user-select: none; -webkit-user-drag: none; }
+.lb-top > div { min-width: 0; }
+.lb-fig { position: relative; min-height: 0; overflow: hidden; cursor: grab; }
+.lb-fig img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; user-select: none; -webkit-user-drag: none; transition: opacity .25s ease; }
+.lb-fig img.swap { opacity: 0; }
+.lb-fig.drag img { transition: none; }
 .lb-nav { display: flex; justify-content: center; gap: 12px; padding-top: 12px; }
 .icon-btn { width: var(--touch); height: var(--touch); border-radius: 50%; border: 1.5px solid rgba(255,255,255,.35); background: transparent; color: #fff; display: grid; place-items: center; cursor: pointer; }
 .icon-btn:hover { background: #fff; color: var(--noite); }
@@ -519,7 +519,8 @@ h1[tabindex="-1"]:focus, h3[tabindex="-1"]:focus, #done h3:focus { outline: none
 .res-acts .btn { white-space: normal; text-align: left; line-height: 1.25; padding-block: 10px; }
 @media (max-width: 560px) { .res-acts .btn { width: 100%; } }
 </style>
-
+</head>
+<body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="i-arr" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -1069,7 +1070,7 @@ function route() {
   const v = $("#hv"); if (v) { if (page === "inicio" && !paused) v.play().catch(() => {}); else v.pause(); }
   if (!first) {
     const anchor = id.startsWith("sv-") ? document.getElementById(id) : null;
-    window.scrollTo({ top: anchor ? anchor.offsetTop - 70 : 0, behavior: "instant" in window ? "auto" : "auto" });
+    window.scrollTo({ top: anchor ? anchor.offsetTop - 70 : 0, behavior: "auto" });
     const h = $(`.page[data-page="${page}"] h1`); if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
   }
   first = false;
@@ -1125,9 +1126,10 @@ function observe() { if (!io) return; $$(".page:not([hidden]) .rv:not(.in), .pag
 
 /* ===== processo: linha de progresso ===== */
 function onScroll() {
-  head.classList.toggle("solid", scrollY > 40 || !$('.page[data-page="inicio"]').hidden === false);
+  const onHome = !$('.page[data-page="inicio"]').hidden;
+  head.classList.toggle("solid", scrollY > 40 || !onHome);
   const steps = $("#steps");
-  if (steps && !$('.page[data-page="inicio"]').hidden) {
+  if (steps && onHome) {
     const r = steps.getBoundingClientRect(), mid = innerHeight * .55;
     const p = Math.max(0, Math.min(1, (mid - r.top) / r.height));
     $("#prog").style.height = (p * (r.height - 16)) + "px";
@@ -1159,21 +1161,48 @@ $("#filters").addEventListener("click", e => {
   $$('[data-works="all"] .work').forEach(w => w.hidden = f !== "todas" && !w.dataset.f.split(" ").includes(f));
 });
 let li = 0, lastFocus = null;
-const lb = $("#lb"), lbImg = $("#lb-img");
-function showLb(i) { li = (i + WORKS.length) % WORKS.length; const w = WORKS[li]; lbImg.src = `media/${w.img}.webp`; lbImg.alt = w.alt; $("#lb-t").textContent = w.t; $("#lb-c").textContent = w.c; $("#lb-n").textContent = `${li + 1} / ${WORKS.length}`; }
+const lb = $("#lb"), lbImg = $("#lb-img"), lbFig = $("#lb-fig");
+const preload = i => { const w = WORKS[(i + WORKS.length) % WORKS.length]; const im = new Image(); im.src = `media/${w.img}.webp`; };
+function showLb(i) {
+  li = (i + WORKS.length) % WORKS.length;
+  const w = WORKS[li];
+  lbImg.classList.add("swap");
+  const im = new Image();
+  im.onload = im.onerror = () => { lbImg.src = im.src; lbImg.alt = w.alt; requestAnimationFrame(() => lbImg.classList.remove("swap")); };
+  im.src = `media/${w.img}.webp`;
+  $("#lb-t").textContent = w.t; $("#lb-c").textContent = w.c; $("#lb-n").textContent = `${li + 1} / ${WORKS.length}`;
+  preload(li + 1); preload(li - 1);
+}
 function openLb(i) { lastFocus = document.activeElement; showLb(i); lb.hidden = false; document.body.style.overflow = "hidden"; $("#lb-x").focus(); }
-function closeLb() { if (lb.hidden) return; lb.hidden = true; document.body.style.overflow = ""; lastFocus && lastFocus.focus(); }
+function closeLb() { if (lb.hidden) return; lb.hidden = true; document.body.style.overflow = ""; if (lastFocus) lastFocus.focus(); }
 document.addEventListener("click", e => { const w = e.target.closest(".work"); if (w) openLb(+w.dataset.i); });
 $("#lb-x").addEventListener("click", closeLb);
 $("#lb-p").addEventListener("click", () => showLb(li - 1));
 $("#lb-nx").addEventListener("click", () => showLb(li + 1));
-lb.addEventListener("click", e => { if (e.target === lb || e.target.id === "lb-fig") closeLb(); });
-addEventListener("keydown", e => { if (lb.hidden) return; if (e.key === "ArrowLeft") showLb(li - 1); if (e.key === "ArrowRight") showLb(li + 1); });
-let sx = null;
-$("#lb-fig").addEventListener("pointerdown", e => { sx = e.clientX; });
-$("#lb-fig").addEventListener("pointermove", e => { if (sx !== null) lbImg.style.transform = `translateX(${(e.clientX - sx) * .6}px)`; });
-const endSwipe = e => { if (sx === null) return; const dx = e.clientX - sx; sx = null; lbImg.style.transform = ""; if (Math.abs(dx) > 50) { showLb(li + (dx < 0 ? 1 : -1)); buzz(); } };
-$("#lb-fig").addEventListener("pointerup", endSwipe); $("#lb-fig").addEventListener("pointercancel", endSwipe);
+addEventListener("keydown", e => {
+  if (lb.hidden) return;
+  if (e.key === "ArrowLeft") showLb(li - 1);
+  if (e.key === "ArrowRight") showLb(li + 1);
+  if (e.key === "Tab") { const f = $$("button", lb), first = f[0], last = f[f.length - 1]; if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); } }
+});
+/* arrastar para os lados troca a foto; um toque fora da foto fecha */
+let sx = null, moved = false;
+lbFig.addEventListener("pointerdown", e => { sx = e.clientX; moved = false; lbFig.classList.add("drag"); });
+lbFig.addEventListener("pointermove", e => { if (sx === null) return; const dx = e.clientX - sx; if (Math.abs(dx) > 6) moved = true; lbImg.style.transform = `translateX(${dx * .6}px)`; });
+const endSwipe = e => {
+  if (sx === null) return;
+  const dx = e.clientX - sx; sx = null; lbFig.classList.remove("drag"); lbImg.style.transform = "";
+  if (Math.abs(dx) > 50) { showLb(li + (dx < 0 ? 1 : -1)); buzz(); }
+};
+lbFig.addEventListener("pointerup", endSwipe); lbFig.addEventListener("pointercancel", endSwipe);
+lbFig.addEventListener("click", e => {
+  if (moved) { moved = false; return; }
+  const r = lbImg.getBoundingClientRect(), nw = lbImg.naturalWidth, nh = lbImg.naturalHeight;
+  if (!nw) return;
+  const k = Math.min(r.width / nw, r.height / nh), w = nw * k, h = nh * k, x0 = r.left + (r.width - w) / 2, y0 = r.top + (r.height - h) / 2;
+  const inside = e.clientX >= x0 && e.clientX <= x0 + w && e.clientY >= y0 && e.clientY <= y0 + h;
+  if (!inside) closeLb();
+});
 
 /* ===== mapa interativo ===== */
 let MAP = null;
@@ -1343,6 +1372,5 @@ document.addEventListener("click", e => { if (e.target.closest("[data-diag]") &&
 
 route();
 </script>
-
 </body>
 </html>

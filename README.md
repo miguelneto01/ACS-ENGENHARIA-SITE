@@ -20,6 +20,18 @@ O site escolhe o arquivo conforme a tela:
 - `hero-540.mp4` (celular, ~3,4 MB)
 - `hero-poster.jpg` aparece enquanto o vídeo carrega e quando o celular está em economia de dados.
 
+## Como atualizar o site
+
+O arquivo de trabalho fica fora do repositório. Depois de editá-lo, gere o `index.html` publicado com:
+
+```bash
+python3 tools/build.py CAMINHO/DO/ARQUIVO-FONTE.html
+```
+
+O script coloca título, metas e estilos no `<head>` e o conteúdo no `<body>`.
+
+Ao trocar o vídeo do topo, mantenha os nomes dos arquivos e altere o número de versão (`?v=`) nos endereços dentro do `index.html`, para os navegadores baixarem o vídeo novo.
+
 ## Como ver no computador
 
 ```bash
