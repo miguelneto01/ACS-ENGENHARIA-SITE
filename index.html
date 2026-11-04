@@ -578,8 +578,8 @@ h1[tabindex="-1"]:focus, h3[tabindex="-1"]:focus, #done h3:focus { outline: none
 <!-- ================= INÍCIO ================= -->
 <div class="page" data-page="inicio">
   <section class="hero" aria-label="Apresentação">
-    <img class="poster" src="media/hero-poster.jpg" alt="">
-    <video id="hv" muted loop playsinline preload="none" poster="media/hero-poster.jpg" aria-hidden="true"></video>
+    <img class="poster" src="media/hero-poster.jpg?v=20261104b" alt="">
+    <video id="hv" muted loop playsinline preload="none" poster="media/hero-poster.jpg?v=20261104b" aria-hidden="true"></video>
     <svg class="lines" viewBox="0 0 660 680" aria-hidden="true"><path d="M346 6L390 62L646 415 M390 62V404 M454 24L90 238 M372 112L96 258 M6 576L430 650 M196 642L554 550 M336 664L634 542" fill="none" stroke="#00B8E6" stroke-width="5" stroke-linecap="round"/></svg>
     <div class="wrap hero-in">
       <span class="eyebrow">Obras públicas e privadas · Ceará</span>
@@ -966,7 +966,7 @@ h1[tabindex="-1"]:focus, h3[tabindex="-1"]:focus, #done h3:focus { outline: none
   <div class="pop-card" role="dialog" aria-modal="true" aria-labelledby="pop-t">
     <button class="pop-x" type="button" data-close aria-label="Fechar"><svg><use href="#i-x"/></svg></button>
     <aside class="pop-side" aria-hidden="true">
-      <img src="media/hero-poster.jpg" alt="">
+      <img src="media/hero-poster.jpg?v=20261104b" alt="">
       <div class="pop-side-in">
         <span class="pop-badge">Grátis · 1 minuto</span>
         <b>Diagnóstico rápido da obra</b>
@@ -1091,7 +1091,7 @@ const hv = $("#hv");
   if (saveData) { paused = true; return; }
   const w = Math.max(screen.width, innerWidth) * Math.min(devicePixelRatio || 1, 2);
   const webm = hv.canPlayType('video/webm; codecs="vp9"');
-  hv.src = innerWidth >= 1200 && webm ? "media/hero-1080.webm" : innerWidth >= 768 || w >= 1500 ? "media/hero-720.mp4" : "media/hero-540.mp4";
+  hv.src = innerWidth >= 1200 && webm ? "media/hero-1080.webm?v=20261104b" : innerWidth >= 768 || w >= 1500 ? "media/hero-720.mp4?v=20261104b" : "media/hero-540.mp4?v=20261104b";
   hv.preload = "auto";
   if (!paused) hv.play().catch(() => {});
 })();
