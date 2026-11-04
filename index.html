@@ -134,7 +134,7 @@ svg .a, symbol .a { fill: var(--ia, #00B8E6); }
 .mnav .btn { margin-top: auto; }
 @media (max-width: 1120px) { .nav a { padding: 0 10px; font-size: 15px; } }
 @media (max-width: 960px) { .nav, .head-cta .btn { display: none; } .burger { display: inline-flex; } }
-@media (max-width: 640px) { .hero-in { padding-top: calc(var(--head-h) + 104px); gap: 22px; } .vid-ctl { top: calc(var(--head-h) + env(safe-area-inset-top, 0px) + 12px); } }
+@media (max-width: 640px) { .hero-in { padding-top: calc(var(--head-h) + 104px); gap: 22px; } }
 
 /* ===== Hero ===== */
 .hero { position: relative; min-height: min(92svh, 880px); display: flex; align-items: flex-end; color: #fff; overflow: hidden; background: var(--noite); }
@@ -157,9 +157,6 @@ svg .a, symbol .a { fill: var(--ia, #00B8E6); }
 .stats > div > span { font-size: 15px; color: var(--muted-d); line-height: 1.35; }
 @media (max-width: 860px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stats > div:nth-child(3) { border-left: 0; } .stats > div:nth-child(n+3) { border-top: 1px solid var(--line-d); } }
 @media (max-width: 380px) { .stats > div { padding: 20px 16px; } }
-.vid-ctl { position: absolute; z-index: 3; right: var(--gut-r); top: calc(var(--head-h) + env(safe-area-inset-top, 0px) + 16px); width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.4); background: rgba(11,37,64,.35); color: #fff; display: grid; place-items: center; cursor: pointer; }
-.vid-ctl svg { width: 18px; height: 18px; }
-.vid-ctl::after { content: ""; position: absolute; inset: -2px; }
 
 .areas { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .areas a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px 0 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.22); background: rgba(7,26,46,.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #fff; text-decoration: none; font-weight: 500; font-size: 15px; transition: background .2s, border-color .2s, color .2s; }
@@ -516,7 +513,7 @@ h1[tabindex="-1"]:focus, h3[tabindex="-1"]:focus, #done h3:focus { outline: none
 .skip { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--acs); color: var(--noite); padding: 12px 16px; border-radius: 10px; font-weight: 600; }
 .skip:focus { top: calc(12px + env(safe-area-inset-top, 0px)); }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-@media (max-width: 640px) { .hero-in { padding-top: calc(var(--head-h) + env(safe-area-inset-top, 0px) + 56px); } .vid-ctl { top: calc(var(--head-h) + env(safe-area-inset-top, 0px) + 8px); width: 40px; height: 40px; } }
+@media (max-width: 640px) { .hero-in { padding-top: calc(var(--head-h) + env(safe-area-inset-top, 0px) + 56px); } }
 .pop-body, .pop-body .step-in, .res-box { min-width: 0; }
 .pop-body .eyebrow { white-space: normal; flex-wrap: wrap; }
 .res-acts .btn { white-space: normal; text-align: left; line-height: 1.25; padding-block: 10px; }
@@ -584,7 +581,6 @@ h1[tabindex="-1"]:focus, h3[tabindex="-1"]:focus, #done h3:focus { outline: none
     <img class="poster" src="media/hero-poster.jpg" alt="">
     <video id="hv" muted loop playsinline preload="none" poster="media/hero-poster.jpg" aria-hidden="true"></video>
     <svg class="lines" viewBox="0 0 660 680" aria-hidden="true"><path d="M346 6L390 62L646 415 M390 62V404 M454 24L90 238 M372 112L96 258 M6 576L430 650 M196 642L554 550 M336 664L634 542" fill="none" stroke="#00B8E6" stroke-width="5" stroke-linecap="round"/></svg>
-    <button class="vid-ctl" id="vctl" type="button" aria-label="Pausar vídeo"><svg><use href="#i-pause"/></svg></button>
     <div class="wrap hero-in">
       <span class="eyebrow">Obras públicas e privadas · Ceará</span>
       <h1 class="h-xl">Engenharia que entrega obras com <span class="hl">prazo, técnica e transparência.</span></h1>
@@ -1088,7 +1084,7 @@ addEventListener("keydown", e => { if (e.key === "Escape") { document.body.class
 
 /* ===== vídeo ===== */
 let paused = reduce;
-const hv = $("#hv"), vctl = $("#vctl");
+const hv = $("#hv");
 /* escolhe o arquivo certo para cada tela: 1080p WebM no computador, 720p no tablet, 540p no celular */
 (function pickVideo() {
   const saveData = navigator.connection && navigator.connection.saveData;
@@ -1099,9 +1095,6 @@ const hv = $("#hv"), vctl = $("#vctl");
   hv.preload = "auto";
   if (!paused) hv.play().catch(() => {});
 })();
-const setV = () => { vctl.setAttribute("aria-label", paused ? "Reproduzir vídeo" : "Pausar vídeo"); vctl.innerHTML = `<svg><use href="#${paused ? "i-play" : "i-pause"}"/></svg>`; };
-setV();
-vctl.addEventListener("click", () => { paused = !paused; paused ? hv.pause() : hv.play().catch(() => {}); setV(); buzz(); });
 
 /* ===== botões: onda ao tocar ===== */
 document.addEventListener("pointerdown", e => {
