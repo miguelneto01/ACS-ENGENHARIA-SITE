@@ -40,6 +40,10 @@ python3 -m http.server 8000
 
 Depois abra http://localhost:8000
 
+## Servidor caseiro (homelab)
+
+Instruções e scripts para publicar no celular Android (Termux + Debian em proot, nginx na porta 8081, Cloudflare Tunnel) estão em [`deploy/README.md`](deploy/README.md).
+
 ## Como publicar
 
 **Netlify ou Cloudflare Pages (recomendado, grátis):** conecte este repositório. Não há etapa de build; a pasta publicada é a raiz (`/`). Cada `git push` na `main` atualiza o site no ar.

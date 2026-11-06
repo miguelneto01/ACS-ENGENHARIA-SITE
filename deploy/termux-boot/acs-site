@@ -1,0 +1,19 @@
+#!/data/data/com.termux/files/usr/bin/sh
+# OPCIONAL — instale só se o reconhecimento mostrar que o boot do primeiro sistema
+# NÃO inicia nem vigia o nginx. Se ele já cuida do nginx, não use este arquivo.
+#
+# Garante que o nginx do Debian esteja de pé (ele serve o site da ACS na porta 8081)
+# e o religa se cair. Não mexe no primeiro sistema.
+# Destino: ~/.termux/boot/acs-site   (chmod +x)
+
+termux-wake-lock
+LOG="$HOME/acs-site-boot.log"
+sleep 90   # deixa o boot do primeiro sistema terminar antes
+
+while true; do
+  if ! proot-distro login debian -- sh -c 'pgrep -x nginx >/dev/null'; then
+    echo "$(date '+%F %T') nginx parado; iniciando" >> "$LOG"
+    proot-distro login debian -- sh -c 'nginx -t && nginx' >> "$LOG" 2>&1
+  fi
+  sleep 120
+done

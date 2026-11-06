@@ -1,0 +1,4 @@
+# Scripts que rodam no Termux/Debian precisam de quebra de linha Unix, mesmo clonados no Windows.
+*.sh            text eol=lf
+*.conf          text eol=lf
+deploy/termux-boot/* text eol=lf
